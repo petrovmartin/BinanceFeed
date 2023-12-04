@@ -5,10 +5,10 @@ A few quick words: The main focus was on the infrastructure and the functionalit
 ## How to get you started? ##
 
 Prerequisite:
-- Install Docker on the running machine (skip if not applicable);
+- Install Docker on the running machine (skip if not applicable).
 
 Next:
-- Open the root folder of the project and execute `docker compose up` through the Console/Terminal;
+- Open the root folder of the project and execute `docker compose up` through the Console/Terminal.
 
 The Docker compose will spin up 5 containers that are configured to work in a network.\
 The containers are:
@@ -17,18 +17,18 @@ The containers are:
 - BinanceFeed.Console - console app with a simple UI to interact with (just to show code reusability);
 - BinanceFeed.DataSeeder - worker app/background service that opens a socket connection to Binance streams for the provided tickers/symbols and saves the data in the db;
 - MsSqlServer - db server to store the events' information;
-- Redis - caching server;
+- Redis - caching server.
 
 ## How to play with it? ##
 
 **Web API:**
-To play with the web API go to Swagger's page at `http://localhost:5272/swagger/index.html`, although I have added a root `/` routing for it. **IMPORTANT!** There is an output caching implemented for endpoint `GET api/{symbol}/SimpleMovingAverage` which is currently set at 20 sec (timeout age is visible in the response header under the 'age' attribute).
+To play with the web API go to Swagger's page at `http://localhost:5272/swagger/index.html`. **IMPORTANT!** There is output caching implemented for `GET api/{symbol}/SimpleMovingAverage` endpoint which is currently set at 20 sec (timeout age is visible in the response header under the '**age**' attribute).
 
 **Console:**
-To play with the Console app you could open Terminal/Console at root folder level of the project and run `docker compose run -it binancefeedconsole`. This should spin up the console app container and attach an *interactive* mode to the Terminal so you could interact with the console;
+To play with the Console app you could open Terminal/Console at root folder of the project and run `docker compose run -it binancefeedconsole`. This should spin up the console app container and attach an *interactive* mode to the Terminal/Console so you could interact with the it.
 
 ## How to run _unit_ + _integration_ tests? ##
-Open the root folder of the project and execute `dotnet test` through the Console/Terminal.
+I have written a few unit tests + a few integration tests. To run them, open the root folder of the project and execute `dotnet test` through the Console/Terminal.
 
 ## How to access the _DB_ & _Cache_? ##
 
