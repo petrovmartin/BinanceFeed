@@ -8,16 +8,16 @@ Prerequisite:
 - Install Docker on the running machine (skip if not applicable);
 
 Next:
-- Open the root folder of the project and execute `docker compose up` through the Console/Terminal.
+- Open the root folder of the project and execute `docker compose up` through the Console/Terminal;
 
-The Docker compose will spin up 5 containers that are configured to work in a network. 
+The Docker compose will spin up 5 containers that are configured to work in a network.\
 The containers are:
 
 - BinanceFeed.API - web API project with the 2 required GET endpoints;
 - BinanceFeed.Console - console app with a simple UI to interact with (just to show code reusability);
 - BinanceFeed.DataSeeder - worker app/background service that opens a socket connection to Binance streams for the provided tickers/symbols and saves the data in the db;
-- MsSqlServer - db server to store the events' information;-
-- Redis - caching server.
+- MsSqlServer - db server to store the events' information;
+- Redis - caching server;
 
 ## How to play with it? ##
 
