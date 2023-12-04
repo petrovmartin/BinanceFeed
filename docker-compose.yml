@@ -7,7 +7,7 @@ services:
     image: binancefeedapi
     environment:
       - RedisConfig__ConnectionString=redis:6379,allowAdmin=true
-      - MsSqlDbConfig__ConnectionString=Server=database,1433;Database=BinanceFeed;User=sa;Password=PassWord42;TrustServerCertificate=True;Encrypt=False;
+      - MsSqlDbConfig__ConnectionString=Server=database,1433;Database=BinanceFeed;User=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;Encrypt=False;
     build:
       context: .
       dockerfile: Client/BinanceFeed.API/Dockerfile
@@ -23,7 +23,7 @@ services:
   binancefeeddataseeder:
     image: binancefeeddataseeder
     environment:
-      - MsSqlDbConfig__ConnectionString=Server=database,1433;Database=BinanceFeed;User=sa;Password=PassWord42;TrustServerCertificate=True;Encrypt=False;
+      - MsSqlDbConfig__ConnectionString=Server=database,1433;Database=BinanceFeed;User=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;Encrypt=False;
     build:
       context: .
       dockerfile: Client/BinanceFeed.DataSeeder/Dockerfile
@@ -38,7 +38,7 @@ services:
   binancefeedconsole:
     image: binancefeedconsole
     environment:
-      - MsSqlDbConfig__ConnectionString=Server=database,1433;Database=BinanceFeed;User=sa;Password=PassWord42;TrustServerCertificate=True;Encrypt=False;
+      - MsSqlDbConfig__ConnectionString=Server=database,1433;Database=BinanceFeed;User=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;Encrypt=False;
     build:
       context: .
       dockerfile: Client/BinanceFeed.Console/Dockerfile
@@ -54,16 +54,16 @@ services:
       - app-tier
 
   database:
-    image: mcr.microsoft.com/mssql/server:2019-latest
+    image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=PassWord42
+      - MSSQL_SA_PASSWORD=YourStrong@Passw0rd
     ports:
       - 5433:1433
     networks:
       - app-tier
     healthcheck:
-      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PPassWord42", "-Q", "select 1"]
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PYourStrong@Passw0rd", "-Q", "select 1"]
       interval: 1s
       retries: 20
 
