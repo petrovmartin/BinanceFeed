@@ -1,0 +1,81 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  binancefeedapi:
+    image: binancefeedapi
+    environment:
+      - RedisConfig__ConnectionString=redis:6379,allowAdmin=true
+      - MsSqlDbConfig__ConnectionString=Server=database,1433;Database=BinanceFeed;User=sa;Password=PassWord42;TrustServerCertificate=True;Encrypt=False;
+    build:
+      context: .
+      dockerfile: Client/BinanceFeed.API/Dockerfile
+    ports:
+      - 5272:5272
+    depends_on:
+      - database
+      - redis
+      - binancefeeddataseeder
+    networks:
+      - app-tier
+
+  binancefeeddataseeder:
+    image: binancefeeddataseeder
+    environment:
+      - MsSqlDbConfig__ConnectionString=Server=database,1433;Database=BinanceFeed;User=sa;Password=PassWord42;TrustServerCertificate=True;Encrypt=False;
+    build:
+      context: .
+      dockerfile: Client/BinanceFeed.DataSeeder/Dockerfile
+    ports:
+      - 5273:5273
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      - app-tier
+  
+  binancefeedconsole:
+    image: binancefeedconsole
+    environment:
+      - MsSqlDbConfig__ConnectionString=Server=database,1433;Database=BinanceFeed;User=sa;Password=PassWord42;TrustServerCertificate=True;Encrypt=False;
+    build:
+      context: .
+      dockerfile: Client/BinanceFeed.Console/Dockerfile
+    ports:
+      - 5274:5274
+    stdin_open: true
+    tty: true
+    depends_on:
+      - database
+      - redis
+      - binancefeeddataseeder
+    networks:
+      - app-tier
+
+  database:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=PassWord42
+    ports:
+      - 5433:1433
+    networks:
+      - app-tier
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PPassWord42", "-Q", "select 1"]
+      interval: 1s
+      retries: 20
+
+  redis:  
+    image: redis
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    networks:
+      - app-tier
+
+networks:
+  app-tier:
+    driver: bridge
