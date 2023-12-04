@@ -22,7 +22,7 @@ The containers are:
 ## How to play with it? ##
 
 **Web API:**
-To play with the web API go to Swagger's page at `http://localhost:5272/swagger/index.html`, although I have added a root `/` routing for it;
+To play with the web API go to Swagger's page at `http://localhost:5272/swagger/index.html`, although I have added a root `/` routing for it. **IMPORTANT!** There is an output caching implemented for endpoint `GET api/{symbol}/SimpleMovingAverage` which is currently set at 20 sec (timeout age is visible in the response header under the 'age' attribute).
 
 **Console:**
 To play with the Console app you could open Terminal/Console at root folder level of the project and run `docker compose run -it binancefeedconsole`. This should spin up the console app container and attach an *interactive* mode to the Terminal so you could interact with the console;
