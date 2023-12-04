@@ -5,7 +5,8 @@ A few quick words: The main focus was on the infrastructure and the functionalit
 ## How to get you started? ##
 
 Prerequisite:
-- Install Docker on the running machine (skip if not applicable).
+- Install Docker on the running machine (skip if not applicable);
+- If you're running the docker compose on Apple M1/M2 Silicon, please go to Docker Settings->General and check Use Rosetta for x86/amd64 emulation on Apple Silicon.
 
 Next:
 - Open the root folder of the project and execute `docker compose up` through the Console/Terminal.
