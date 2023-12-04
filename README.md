@@ -34,7 +34,7 @@ I have written a few unit tests + a few integration tests. To run them, open the
 ## How to access the _DB_ & _Cache_? ##
 
 **DB:**
-To access the DB - "host": "127.0.0.1", "port": 5433, "user": "sa", "password": "PassWord42";
+To access the DB - "host": "127.0.0.1", "port": 5433, "user": "sa", "password": "YourStrong@Passw0rd";
 
 **Redis:**
 To access the Redis cache - "host": "127.0.0.1", "port": 6379.
