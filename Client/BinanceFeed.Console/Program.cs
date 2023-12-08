@@ -59,17 +59,16 @@ internal class Program
 	{
 		var splitInput = readerInput.Split(Space);
 
-		var request = splitInput switch
+		var result = splitInput switch
 		{
 		["24h", var symbol] => await Avg24hPriceCommandExecuter(mediator, symbol),
 		["sma", var symbol, var dataPoints, var timeperiod, var date] => await SimpleMovingAvgCommandExecuter(mediator, symbol, dataPoints, timeperiod, date),
 		["sma", var symbol, var dataPoints, var timePeriod] => await SimpleMovingAvgCommandExecuter(mediator, symbol, dataPoints, timePeriod, null),
 		["quit"] => null,
-
 			_ => throw new ArgumentException("Command not supported. Write 'quit' if you'd like to exit.")
 		};
 
-		return request;
+		return result;
 	}
 
 	private static async Task<string> Avg24hPriceCommandExecuter(IMediator mediator, string symbol)
