@@ -26,7 +26,7 @@ The containers are:
 To play with the web API go to Swagger's page at `http://localhost:5272/swagger/index.html`. **IMPORTANT!** There is output caching implemented for `GET api/{symbol}/SimpleMovingAverage` endpoint which is currently set at 20 sec (timeout age is visible in the response header under the '**age**' attribute).
 
 **Console:**
-To play with the Console app you could open Terminal/Console at root folder of the project and run `docker compose run -it binancefeedconsole`. This should spin up the console app container and attach an *interactive* mode to the Terminal/Console so you could interact with the it.
+To play with the Console app you could open Terminal/Console at root folder of the project and run `docker compose run -it binancefeedconsole`. This should spin up the console app container and attach an *interactive* mode to the Terminal/Console so you could interact with it.
 
 ## How to run _unit_ + _integration_ tests? ##
 I have written a few unit tests + a few integration tests. To run them, open the root folder of the project and execute `dotnet test` through the Console/Terminal.
@@ -34,7 +34,7 @@ I have written a few unit tests + a few integration tests. To run them, open the
 ## How to access the _DB_ & _Cache_? ##
 
 **DB:**
-To access the DB - "host": "127.0.0.1", "port": 5433, "user": "sa", "password": "PassWord42";
+To access the DB - "host": "127.0.0.1", "port": 5433, "user": "sa", "password": "YourStrong@Passw0rd";
 
 **Redis:**
 To access the Redis cache - "host": "127.0.0.1", "port": 6379.
